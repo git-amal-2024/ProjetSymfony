@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -28,6 +30,17 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'relation')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $id_categorie = null;
+
+    /**
+     * @var Collection<int, LigneCommande>
+     */
+    #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'article')]
+    private Collection $relation;
+
+    public function __construct()
+    {
+        $this->relation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +103,36 @@ class Article
     public function setIdCategorie(?Categorie $id_categorie): static
     {
         $this->id_categorie = $id_categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LigneCommande>
+     */
+    public function getRelation(): Collection
+    {
+        return $this->relation;
+    }
+
+    public function addRelation(LigneCommande $relation): static
+    {
+        if (!$this->relation->contains($relation)) {
+            $this->relation->add($relation);
+            $relation->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelation(LigneCommande $relation): static
+    {
+        if ($this->relation->removeElement($relation)) {
+            // set the owning side to null (unless already changed)
+            if ($relation->getArticle() === $this) {
+                $relation->setArticle(null);
+            }
+        }
 
         return $this;
     }
