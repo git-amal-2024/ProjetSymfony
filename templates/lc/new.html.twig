@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New LigneCommande{% endblock %}
+
+{% block body %}
+    <h1>Create new LigneCommande</h1>
+
+    {{ include('lc/_form.html.twig') }}
+
+    <a href="{{ path('app_l_c_index') }}">back to list</a>
+{% endblock %}

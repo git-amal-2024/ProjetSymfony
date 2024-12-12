@@ -28,6 +28,12 @@ class Commande
     #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'commande')]
     private Collection $relation;
 
+    #[ORM\ManyToOne(inversedBy: 'relation')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
+
+
+
     public function __construct()
     {
         $this->relation = new ArrayCollection();
@@ -88,6 +94,18 @@ class Commande
                 $relation->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }
