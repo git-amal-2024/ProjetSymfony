@@ -18,9 +18,7 @@ class ArticleType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('prix')
-
             ->add('image',FileType::class,['data_class'=> null])
-
             ->add('id_categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'id',
