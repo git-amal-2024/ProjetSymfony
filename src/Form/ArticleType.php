@@ -21,7 +21,7 @@ class ArticleType extends AbstractType
             ->add('image',FileType::class,['data_class'=> null])
             ->add('id_categorie', EntityType::class, [
                 'class' => Categorie::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
         ;
     }
