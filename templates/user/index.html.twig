@@ -1,17 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <div class="container">
+        <br><br><br>
+        <h1>Liste des Utilisateurs</h1><br><br><br>
 
-    <table class="table">
+        {% include'layouts/_flash_message.html.twig' %}
+
+        <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
+                <th>Nom</th>
+                <th>Prenom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,20 +25,44 @@
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    {% if ('ROLE_ADMIN' in user.roles) %}
+                        <span class="text-primary">Administrateur</span>
+                    {% elseif ('ROLE_EDITOR' in user.roles) %}
+                      <span class="text-success">Editeur</span>
+                    {% else%}
+                        <span>Client</span>
+                    {% endif %}
+                    {# {% for role in user.roles %}
+                        {{ role }}
+                    {% endfor %} #}
+                </td>
+                <td>
+                    {{ user.lastname }}
+                </td>
+                <td>
+                    {{ user.firstname }}
+                </td>
+                <td>
+                    {% if ('ROLE_ADMIN' in user.roles) == false %}
+
+                        {% if ('ROLE_EDITOR' in user.roles) ==false %}
+                            <a onclick="return confirm('voulez-vous vraiment affecter le role éditeur à cet utilisateur ?')" class="btn btn-outline-primary" href="{{ path('app_user_to_editor', {'id': user.id}) }}">Ajouter comme éditeur</a>
+                        {% else %}
+                            <a onclick="return confirm('voulez-vous vraiment retirer le role éditeur à cet utilisateur ?')" class="btn btn-danger" href="{{ path('app_user_remove_editor_role', {'id': user.id}) }}">Retirer le role éditeur</a>
+                        {% endif %}
+
+                            <a href="{{ path('app_user_delete', {'id': user.id}) }}">Supprimer</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    </div>
     <a href="{{ path('app_user_new') }}">Create new</a>
 {% endblock %}

@@ -25,14 +25,16 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ article.image }}</td>
+                <td> <img src="{{ asset(article.image) }}" {# alt="{{ article.nom }}"  #} style="max-width: 200px;">
+                </td>
             </tr>
         </tbody>
     </table>
+    <br>
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    <a href="{{ path('app_article_index') }}">Back to list</a><br>
 
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+    <a href="{{ path('app_article_edit', {'id': article.id}) }}">Edit</a><br>
 
-    {{ include('article/_delete_form.html.twig') }}
+    {{ include('article/_delete_form.html.twig') }}<br>
 {% endblock %}

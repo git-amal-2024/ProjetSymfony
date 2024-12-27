@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/categorie')]
+#[Route('/admin/categorie')]
 final class CategorieController extends AbstractController
 {
     #[Route(name: 'app_categorie_index', methods: ['GET'])]
@@ -32,6 +32,7 @@ final class CategorieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($categorie);
             $entityManager->flush();
+            $this->addFlash('succes','Votre catégorie a bien été ajoutée');
 
             return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ final class CategorieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('succes','Votre catégorie a bien été modifiée');
 
             return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +76,8 @@ final class CategorieController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($categorie);
             $entityManager->flush();
+            $this->addFlash('danger','Votre catégorie a été supprimée');
+
         }
 
         return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);

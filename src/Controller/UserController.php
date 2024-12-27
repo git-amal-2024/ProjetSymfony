@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/user')]
+#[Route('/admin/user')]
 final class UserController extends AbstractController
 {
     #[Route(name: 'app_user_index', methods: ['GET'])]
@@ -58,6 +58,7 @@ final class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success','le user a été modifié');
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -77,5 +78,29 @@ final class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/editor', name: 'app_user_to_editor')]
+    public function changeRole(User $user, EntityManagerInterface $entityManager): Response
+    {
+        $user->setRoles(["ROLE_EDITOR","ROLE_USER"]);
+        $entityManager->flush();
+
+        $this->addFlash('succes','Le role éditeur a été ajouté à votre utilisateur');
+
+        return $this->redirectToRoute('app_user_index');
+
+    }
+
+    #[Route('/{id}/remove/editor/role', name: 'app_user_remove_editor_role')]
+    public function editorRoleRemove(User $user, EntityManagerInterface $entityManager): Response
+    {
+        $user->setRoles([]);
+        $entityManager->flush();
+
+        $this->addFlash('danger','Le role éditeur a été retiré de votre utilisateur');
+
+        return $this->redirectToRoute('app_user_index');
+
     }
 }

@@ -1,0 +1,23 @@
+[33mcommit 905349a0ab544806553bb4a0f9988f7bd1721bdf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/amal_branch[m[33m, [m[1;32msarra_branch[m[33m, [m[1;32mhayder_branch[m[33m, [m[1;32mamal_branch[m[33m)[m
+Author: amal <amel.mabrouki@gmail.com>
+Date:   Thu Dec 12 22:42:43 2024 +0100
+
+    Ajout reste des tables User&Personnel&Client hompage
+
+[33mcommit 0c06bc0f1cc414a71c90f4391c677708e19a5ea2[m
+Author: amal <amel.mabrouki@gmail.com>
+Date:   Thu Nov 28 22:06:18 2024 +0100
+
+    ajout class Commande&Lignecommande
+
+[33mcommit e63c3d4b090e76664860e3f40dd967d62a72d310[m
+Author: amal <amel.mabrouki@gmail.com>
+Date:   Thu Nov 28 21:09:35 2024 +0100
+
+    creation class Article&Categori
+
+[33mcommit dd10425be5cd911e717c0412c1e6b25a1b7dbafa[m
+Author: Amal <amel.mabrouki@gmail.com>
+Date:   Thu Nov 28 11:33:48 2024 +0100
+
+    Add initial set of files

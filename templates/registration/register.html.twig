@@ -3,10 +3,15 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
+=======
+    <h1>Inscription</h1>
+>>>>>>> sarra_branch
 
     <div class="container security-form">
         <div class="login-form">
 
+<<<<<<< HEAD
             <h1>Inscription</h1>
                 <br>
 
@@ -26,4 +31,19 @@
             {{ form_end(registrationForm) }}
         </div>
     </div>
+=======
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, {label:'Email'}) }}<br>
+
+        {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}<br>
+
+    {{ form_row(registrationForm.lastname, {label: 'Nom'}) }}<br>
+    {{ form_row(registrationForm.firstname, {label: 'Prenom'}) }}<br>
+
+
+    {{ form_row(registrationForm.agreeTerms) }}<br>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_end(registrationForm) }}
+>>>>>>> sarra_branch
 {% endblock %}
