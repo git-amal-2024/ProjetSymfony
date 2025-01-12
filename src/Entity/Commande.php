@@ -26,17 +26,18 @@ class Commande
      * @var Collection<int, LigneCommande>
      */
     #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'commande')]
-    private Collection $relation;
+    private Collection $LigneCommande;
 
-    #[ORM\ManyToOne(inversedBy: 'relation')]
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Client $client = null;
 
 
 
+
     public function __construct()
     {
-        $this->relation = new ArrayCollection();
+        $this->ligneCommande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,27 +72,27 @@ class Commande
     /**
      * @return Collection<int, LigneCommande>
      */
-    public function getRelation(): Collection
+    public function getLigneCommande(): Collection
     {
-        return $this->relation;
+        return $this->LigneCommande;
     }
 
-    public function addRelation(LigneCommande $relation): static
+    public function addRelation(LigneCommande $LigneCommande): static
     {
-        if (!$this->relation->contains($relation)) {
-            $this->relation->add($relation);
-            $relation->setCommande($this);
+        if (!$this->LigneCommande->contains($LigneCommande)) {
+            $this->LigneCommande->add($LigneCommande);
+            $LigneCommande->setCommande($this);
         }
 
         return $this;
     }
 
-    public function removeRelation(LigneCommande $relation): static
+    public function removeRelation(LigneCommande $LigneCommande): static
     {
-        if ($this->relation->removeElement($relation)) {
+        if ($this->LigneCommande->removeElement($LigneCommande)) {
             // set the owning side to null (unless already changed)
-            if ($relation->getCommande() === $this) {
-                $relation->setCommande(null);
+            if ($LigneCommande->getCommande() === $this) {
+                $LigneCommande->setCommande(null);
             }
         }
 
@@ -108,5 +109,9 @@ class Commande
         $this->client = $client;
 
         return $this;
+    }
+    public function getLignesDeCommande()
+    {
+        return $this->lignesDeCommande;
     }
 }

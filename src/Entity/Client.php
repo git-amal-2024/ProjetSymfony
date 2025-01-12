@@ -21,12 +21,12 @@ class Client extends User
     /**
      * @var Collection<int, Commande>
      */
-    #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'client')]
-    private Collection $relation;
+    #[ORM\OneToMany(mappedBy:'client', targetEntity:Commande::class)]
+    private Collection $commandes;
 
     public function __construct()
     {
-        $this->relation = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
 
@@ -57,16 +57,16 @@ class Client extends User
     /**
      * @return Collection<int, Commande>
      */
-    public function getRelation(): Collection
+    public function getCommandes(): Collection
     {
-        return $this->relation;
+        return $this->commandes;
     }
 
-    public function addRelation(Commande $relation): static
+    public function addCommande(Commande $commande): self
     {
-        if (!$this->relation->contains($relation)) {
-            $this->relation->add($relation);
-            $relation->setClient($this);
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setClient($this);
         }
 
         return $this;

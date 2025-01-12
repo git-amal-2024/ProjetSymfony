@@ -6,6 +6,7 @@ use App\Entity\LigneCommande;
 use App\Form\LigneCommandeType;
 use App\Repository\LigneCommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

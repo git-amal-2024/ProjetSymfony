@@ -6,6 +6,7 @@ use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,18 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/commande')]
 final class CommandeController extends AbstractController
 {
+    #[Route('/{id}/articles', name: 'app_commande_articles', methods: ['GET'])]
+    public function showCommandeArticles(Commande $commande): Response
+    {
+        // Récupérer les articles associés à la commande
+        $articles = $commande->getArticles();
+
+        return $this->render('commande/commande.html.twig', [
+            'commande' => $commande,
+            'articles' => $articles,
+        ]);
+    }
+
     #[Route(name: 'app_commande_index', methods: ['GET'])]
     public function index(CommandeRepository $commandeRepository): Response
     {
@@ -25,11 +38,27 @@ final class CommandeController extends AbstractController
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $client = $this->getUser(); // Supposons que le client soit l'utilisateur connecté.
+
         $commande = new Commande();
-        $form = $this->createForm(CommandeType::class, $commande);
+        $commande->setClient($client);
+
+        $form = $this->createFormBuilder($commande)
+            ->add('ligneCommande', CollectionType::class, [
+                'entry_type' => LigneCommandeType::class,
+                'allow_add' => true,
+                'by_reference' => false,
+            ])
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Associer chaque LigneDeCommande à la Commande
+            foreach ($commande->getLignesDeCommande() as $ligneDeCommande) {
+                $ligneDeCommande->setCommande($commande);
+            }
+
             $entityManager->persist($commande);
             $entityManager->flush();
 
@@ -37,7 +66,7 @@ final class CommandeController extends AbstractController
         }
 
         return $this->render('commande/new.html.twig', [
-            'commande' => $commande,
+            //'commande' => $commande,
             'form' => $form,
         ]);
     }

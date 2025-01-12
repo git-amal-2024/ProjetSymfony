@@ -17,7 +17,7 @@ final class PersonnelController extends AbstractController
     #[Route(name: 'app_personnel_index', methods: ['GET'])]
     public function index(PersonnelRepository $personnelRepository): Response
     {
-        return $this->render('personnel/index.html.twig', [
+        return $this->render('personnel/index1.html.twig', [
             'personnels' => $personnelRepository->findAll(),
         ]);
     }

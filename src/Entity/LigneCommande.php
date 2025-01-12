@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LigneCommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: LigneCommandeRepository::class)]
 class LigneCommande
@@ -16,13 +17,18 @@ class LigneCommande
     #[ORM\Column]
     private ?int $quantite = null;
 
-    #[ORM\ManyToOne(inversedBy: 'relation')]
+    #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'lignesDeCommande')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
 
-    #[ORM\ManyToOne(inversedBy: 'relation')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Article $article = null;
+    #[ORM\ManyToMany(targetEntity: Article::class)]
+    #[ORM\JoinTable(name: 'ligne_de_commande_article')]
+    private Collection $article;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,14 +59,22 @@ class LigneCommande
         return $this;
     }
 
-    public function getArticle(): ?Article
+    public function getArticles(): Collection
     {
-        return $this->article;
+        return $this->articles;
     }
 
     public function setArticle(?Article $article): static
     {
         $this->article = $article;
+
+        return $this;
+    }
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+        }
 
         return $this;
     }
