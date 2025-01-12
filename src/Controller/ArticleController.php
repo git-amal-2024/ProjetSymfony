@@ -25,8 +25,6 @@ final class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
-
-
     #[Route(name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {   // Vérifier si l'utilisateur a le rôle d'administrateur
