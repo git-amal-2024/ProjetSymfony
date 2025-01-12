@@ -1,5 +1,5 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <title>Kaira</title>
@@ -50,10 +50,18 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link  active" href="home/index.html.twig" aria-haspopup="true" aria-expanded="false">Home</a>
+                                <a class="nav-link  active" href="homepage.html.twig" aria-haspopup="true" aria-expanded="false">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="article/list">Shop</a>
+                                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">Shop</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdownBlog" data-bs-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Blog</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdownPages" data-bs-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Pages</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Blog</a>
@@ -69,10 +77,11 @@
             <div class="col-3 col-lg-auto">
                 <ul class="list-unstyled d-flex m-0">
                     <li class="d-none d-lg-block">
-                        <a href="/register" class="text-uppercase mx-3">S'inscrire</a>
+                        <a href="index.html" class="text-uppercase mx-3">Wishlist</a>
                     </li>
                     <li class="d-none d-lg-block">
-                        <a href="/login" class="text-uppercase mx-3">S'identifier</a>
+                        <a href="index.html" class="text-uppercase mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                           aria-controls="offcanvasCart">Cart</a>
                     </li>
                     <li class="d-lg-none">
                         <a href="#" class="mx-2">
@@ -1085,4 +1094,5 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script src="js/script.min.js"></script>
 </body>
+
 </html>
