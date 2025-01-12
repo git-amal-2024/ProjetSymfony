@@ -148,6 +148,38 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/composer" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/Kaira/vendor/symfony/yaml" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
